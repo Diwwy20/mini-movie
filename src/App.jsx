@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import "./locales";
 import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/SearchPage";
@@ -9,6 +9,8 @@ import TopRatedPage from "./pages/TopRatedPage";
 import MainLayout from "./layout/MainLayout";
 
 const App = () => {
+  const location = useLocation();
+
   return (
     <Routes>
       <Route
@@ -58,6 +60,11 @@ const App = () => {
             <Cart />
           </MainLayout>
         }
+      />
+
+      <Route
+        path="*"
+        element={<Navigate to="/" replace state={{ from: location }} />}
       />
     </Routes>
   );
