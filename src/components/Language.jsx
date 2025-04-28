@@ -17,9 +17,7 @@ const Language = ({ onLanguageChange = null }) => {
     { code: "en", nameTh: "ภาษาอังกฤษ", nameEn: "English", flag: images.usa },
   ];
 
-  // ตรวจสอบภาษาในครั้งแรกที่โหลด และตั้งค่าให้ถูกต้อง
   useEffect(() => {
-    // ถ้าภาษาปัจจุบันไม่ตรงกับภาษาใดๆ ในรายการ ให้ตั้งค่าเป็น "en" (หรือค่าเริ่มต้นที่ต้องการ)
     if (!languages.some((lang) => lang.code === currentLanguage)) {
       i18n.changeLanguage("en");
     }
@@ -27,7 +25,6 @@ const Language = ({ onLanguageChange = null }) => {
 
   const getCurrentFlag = () => {
     const current = languages.find((lang) => lang.code === currentLanguage);
-    // แก้จาก thailand เป็น usa เพื่อให้สอดคล้องกับภาษาอังกฤษเป็นค่าเริ่มต้น
     return current ? current.flag : images.usa;
   };
 
