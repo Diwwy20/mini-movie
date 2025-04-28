@@ -1,12 +1,23 @@
-# React + Vite
+# Mini-Movie Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a Mini-Movie Web Application designed to allow users to browse, search, and purchase movies. Users can add movies to their cart, apply discounts, and keep their cart persistent across sessions. The app also includes a countdown timer for order completion.
 
-Currently, two official plugins are available:
+## Steps to Run the Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Follow these steps to get the project up and running locally:
 
-## Expanding the ESLint configuration
+### Clone the Repository
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Clone the repository to your local machine using the command below:
+```
+1.git clone https://github.com/Diwwy20/mini-movie
+
+2.npm install --legacy-peer-deps && npm i --legacy-peer-deps 
+
+3.npm run dev to run the project
+```
+### Important Note on `.env` File
+
+Please note that **the `.env` file should not be pushed to Git** for security reasons as it often contains sensitive information such as API keys, database credentials, etc. If you need to add environment variables, you can create your own `.env` file locally.
+
+An example `.env` file might be included in the repository for demonstration purposes, but it **should not** be used in production. Always make sure to create your own `.env` file to avoid exposing sensitive data.
