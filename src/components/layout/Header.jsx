@@ -58,7 +58,7 @@ const Header = () => {
       navigate(`/search/${searchQuery}`);
       setSearchQuery("");
       setShowTrending(false);
-      setIsMobileMenuOpen(false); // ปิดเมนูหลังจากค้นหา
+      setIsMobileMenuOpen(false);
     }
   };
 
@@ -69,9 +69,23 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   };
 
-  // ฟังก์ชันสำหรับการจัดการเมื่อมีการเปลี่ยนภาษา
   const handleLanguageChange = (languageCode) => {
     // navigate(0);
+  };
+
+  const isActive = (path) => {
+    if (path === "/" && location.pathname === "/") {
+      return true;
+    }
+    return path !== "/" && location.pathname.startsWith(path);
+  };
+
+  const getLinkClassName = (path) => {
+    return `relative ${
+      isActive(path)
+        ? "text-blue-400 font-bold"
+        : "text-white after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[3px] after:bg-white hover:after:w-full hover:after:transition-all hover:after:duration-600"
+    } `;
   };
 
   return (
@@ -84,28 +98,16 @@ const Header = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6">
-          <Link
-            to="/"
-            className="relative text-white hover:text-secondary after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-secondary after:transition-all after:duration-600 hover:after:w-14"
-          >
+          <Link to="/" className={getLinkClassName("/")}>
             {t("Home")}
           </Link>
-          <Link
-            to="/trending"
-            className="relative text-white hover:text-secondary after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-secondary after:transition-all after:duration-600 hover:after:w-14"
-          >
+          <Link to="/trending" className={getLinkClassName("/trending")}>
             {t("Trending")}
           </Link>
-          <Link
-            to="/top-rated"
-            className="relative text-white hover:text-secondary after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-secondary after:transition-all after:duration-600 hover:after:w-21"
-          >
+          <Link to="/top-rated" className={getLinkClassName("/top-rated")}>
             {t("Top Rated")}
           </Link>
-          <Link
-            to="/upcoming"
-            className="relative text-white hover:text-secondary after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-secondary after:transition-all after:duration-600 hover:after:w-12"
-          >
+          <Link to="/upcoming" className={getLinkClassName("/upcoming")}>
             {t("Upcoming")}
           </Link>
 
@@ -159,7 +161,6 @@ const Header = () => {
             )}
           </div>
 
-          {/* Language switch - ส่ง callback เพื่อให้มีการ refresh ข้อมูลเมื่อเปลี่ยนภาษา */}
           <Language onLanguageChange={handleLanguageChange} />
 
           {/* Cart */}
@@ -192,31 +193,30 @@ const Header = () => {
                 <X size={28} />
               </button>
 
-              {/* Links */}
               <Link
                 to="/"
-                className="relative text-white hover:text-secondary after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-secondary after:transition-all after:duration-600 hover:after:w-14"
+                className={getLinkClassName("/")}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t("Home")}
               </Link>
               <Link
                 to="/trending"
-                className="relative text-white hover:text-secondary after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-secondary after:transition-all after:duration-600 hover:after:w-14"
+                className={getLinkClassName("/trending")}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t("Trending")}
               </Link>
               <Link
                 to="/top-rated"
-                className="relative text-white hover:text-secondary after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-secondary after:transition-all after:duration-600 hover:after:w-21"
+                className={getLinkClassName("/top-rated")}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t("Top Rated")}
               </Link>
               <Link
                 to="/upcoming"
-                className="relative text-white hover:text-secondary after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-secondary after:transition-all after:duration-600 hover:after:w-12"
+                className={getLinkClassName("/upcoming")}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t("Upcoming")}
@@ -289,7 +289,6 @@ const Header = () => {
               </div>
             </div>
 
-            {/* click ด้านนอกเมนูเพื่อปิด */}
             <div
               className="flex-grow"
               onClick={() => setIsMobileMenuOpen(false)}
